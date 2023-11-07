@@ -8,6 +8,8 @@ import Procesamiento.EmpresaAlquilerVehiculo;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 @SuppressWarnings("serial")
@@ -92,12 +94,10 @@ public class MostrarInfoEmpleado extends JDialog {
         panel.add(campoPanel);
     }
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws FileNotFoundException, IOException
 	{
 		EmpresaAlquilerVehiculo empresa = new EmpresaAlquilerVehiculo();
-		new MostrarInfoEmpleado(empresa);
-			
-	}
+		new MostrarInfoEmpleado(empresa);}
 
 
 }

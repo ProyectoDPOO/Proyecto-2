@@ -1,5 +1,7 @@
 package Aplicacion;
 
+
+
 import javax.swing.JFrame;
 
 
@@ -14,6 +16,8 @@ import Procesamiento.EmpresaAlquilerVehiculo;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 
@@ -85,7 +89,7 @@ public class RegistrarCategoria extends JFrame {
         setVisible(true);
 	}
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws FileNotFoundException, IOException
 	{
 		EmpresaAlquilerVehiculo empresa = new EmpresaAlquilerVehiculo();
 		new RegistrarCategoria(empresa);

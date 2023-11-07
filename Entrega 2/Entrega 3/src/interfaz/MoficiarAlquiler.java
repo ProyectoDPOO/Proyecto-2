@@ -1,6 +1,4 @@
-package Aplicacion;
-
-
+package interfaz;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,10 +9,10 @@ public class MoficiarAlquiler {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 350);
 
-        Color backgroundColor = new Color(176, 196, 222); 
+        Color backgroundColor = new Color(176, 196, 222); // Color de fondo
 
         JPanel panel = new JPanel();
-        panel.setBackground(backgroundColor); 
+        panel.setBackground(backgroundColor); // Establecer el color de fondo del panel
         frame.add(panel);
         panel.setLayout(new BorderLayout());
 
@@ -72,7 +70,7 @@ public class MoficiarAlquiler {
             }
         });
 
-
+        // Agregar un listener al botón de eliminar alquiler
         eliminarAlquilerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,7 +79,7 @@ public class MoficiarAlquiler {
             }
         });
 
-
+        // Agregar un listener al botón de regresar
         regresarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

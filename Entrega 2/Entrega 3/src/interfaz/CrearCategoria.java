@@ -1,5 +1,4 @@
-package Aplicacion;
-
+package interfaz;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

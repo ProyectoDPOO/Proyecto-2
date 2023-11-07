@@ -1,5 +1,6 @@
 package Aplicacion;
 
+
 import javax.swing.JFrame;
 
 
@@ -18,7 +19,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 @SuppressWarnings("serial")
@@ -148,7 +150,7 @@ public class InicioSesion extends JFrame {
         add(panel);
         setVisible(true);
 	}
-	public static void main(String[] args)
+	public static void main(String[] args) throws FileNotFoundException, IOException
 	{
 		EmpresaAlquilerVehiculo empresa = new EmpresaAlquilerVehiculo();
 		new InicioSesion(empresa);

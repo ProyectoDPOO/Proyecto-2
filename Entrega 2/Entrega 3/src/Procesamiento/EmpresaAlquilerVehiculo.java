@@ -18,6 +18,12 @@ import Modelo.Vehiculo;
 import Modelo.Seguro;
 import Modelo.EstadoVehiculo;
 import Modelo.Reserva;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 public class EmpresaAlquilerVehiculo {
 	
@@ -32,10 +38,10 @@ public class EmpresaAlquilerVehiculo {
 	private Map<Integer, Alquiler> alquileres;
 	private Map<Integer, Reserva> reservas;
 	
-	public EmpresaAlquilerVehiculo() 
+	public EmpresaAlquilerVehiculo() throws FileNotFoundException, IOException 
 	{
 		usuarios = new HashMap<>();
-		this.inventario = new HashMap<>();
+		inventario = new HashMap<>();
 		sedes = new HashMap<>();
 		empleados = new HashMap<>();
 		seguros = new HashMap<>();
@@ -45,7 +51,7 @@ public class EmpresaAlquilerVehiculo {
 		alquileres = new HashMap<>();
 		reservas = new HashMap<>();
 		
-
+		cargarData();
 	}
 	
 	 public boolean verificarUsuario(String usuario)
@@ -53,7 +59,7 @@ public class EmpresaAlquilerVehiculo {
 		return usuarios.containsKey(usuario);
 	 }
 	 
-		public void registrarUsuario(String usuario, String contrasena, String rol)
+	public void registrarUsuario(String usuario, String contrasena, String rol)
 		{
 			{
 				boolean continuar = true;
@@ -164,11 +170,42 @@ public class EmpresaAlquilerVehiculo {
 		reservas.put(numero, newReserva);
 				
 	}
-
+	public ArrayList consultaAlquiler(int id) {
+		ArrayList<String> solve= new ArrayList();
+		if(alquileres.containsKey(id)) {
+			 
+			 Alquiler alquilerc = alquileres.get(id);
+			 
+			 solve.add(alquilerc.getCliente());
+			 solve.add(alquilerc.getVehiculo());
+			 solve.add(alquilerc.getSedeRecoger());
+			 solve.add(alquilerc.getSedeEntrega());
+			 solve.add(alquilerc.getFechaRecogida());
+			 solve.add(alquilerc.getFechaEntrega());
+			 solve.add(alquilerc.getRangoHorasRecogida());
+			 solve.add(alquilerc.getRangoHorasEntrega());
+			 return solve;
+			 
+			 
+		 }
+		else 
+	    {solve.add("No encontrado");
+		 solve.add("No encontrado");
+		 solve.add("No encontrado");
+		 solve.add("No encontrado");
+		 solve.add("No encontrado");
+		 solve.add("No encontrado");
+		 solve.add("No encontrado");
+		 solve.add("No encontrado");
+		return solve;
+	    }
+		 
+	}
 	
 	public void generarAlquiler(String vehiculo, String cliente, String fechaRecogida, String rangoHorasRecogida, String sedeRecogida, String fechaEntrega, String rangoHorasEntrega, String sedeEntrega, String seguros2, String conductores)
 	{
 		Alquiler newAlquiler = new Alquiler(vehiculo,  cliente,  fechaRecogida,  rangoHorasRecogida,  sedeRecogida,  fechaEntrega,  rangoHorasEntrega,  sedeEntrega,  seguros2,  conductores);
+		System.out.println("creado");
 		int numero = newAlquiler.generarNumeroAlquiler();
 		int precio = newAlquiler.generarPrecioFinal(vehiculo);
 		System.out.println("El precio final de alquiler es:" + precio);
@@ -265,7 +302,14 @@ public class EmpresaAlquilerVehiculo {
 		}
 		return cliente;
 	}
-		
+	public void registrarSede(String nombreSede, String ubicacion, int horarioAtencion, String idAdmin) {
+		Empleado administradorLocal = empleados.get(idAdmin);
+		Sede nueva = new Sede (nombreSede,ubicacion, horarioAtencion,administradorLocal);
+		sedes.put(nombreSede, nueva);
+	}
+
+	
+	
 	public void gestionSede(String nombreSede, String ubicacion, int horarioAtencion, String adminLocal2) {
 		
 		Empleado adminLocal = empleados.get(adminLocal2);
@@ -291,21 +335,66 @@ public class EmpresaAlquilerVehiculo {
 	        System.out.println("La categoría especificada no existe.");
 	    }
 	}
-	public String input(String mensaje)
-	{
-		try
-		{
-			System.out.print(mensaje + ": ");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			return reader.readLine();
+	public void cargarData() throws FileNotFoundException, IOException {
+		BufferedReader buffer = new BufferedReader(new FileReader(new File("DATA/Usuarios.txt")));
+		String linea = buffer.readLine();
+		while (linea != null) {
+			String[] data = linea.split(",");
+			String usuario = data[1];
+			String password = data[2];
+			String rol = data[3];
+			Usuario usuarioC=new Usuario(usuario, password, rol);
+			if (data.length >4){
+				Empleado EmpleC= new Empleado(data[0],usuario, password, rol, data[4]);
+				empleados.put(data[0], EmpleC);
+			}
+			
+			usuarios.put(usuario, usuarioC);
+			linea = buffer.readLine();
 		}
-		catch (IOException e)
-		{
-			System.out.println("Error leyendo de la consola");
-			e.printStackTrace();
+		buffer.close();
+	
+		BufferedReader buffer1 = new BufferedReader(new FileReader(new File("DATA/inventario.txt")));
+		linea = buffer1.readLine();
+		while (linea != null) {
+			String[] vehiculoData = linea.split(",");
+			String placa = vehiculoData[0];
+            String marca = vehiculoData[1];
+            String modelo = vehiculoData[2];
+            String color = vehiculoData[3];
+            String transmision = vehiculoData[4];
+            int capacidad = Integer.parseInt(vehiculoData[5]);
+            String categoria = vehiculoData[6];
+            String estado = vehiculoData[7];
+            String sedeActual = vehiculoData[8];
+            String fechadisponible = vehiculoData[9];
+            registrarVehiculo(placa, marca, modelo, color, transmision, capacidad, categoria, estado, sedeActual, fechadisponible);
 		}
-		return null;
+        buffer.close();
+		
+        
+        BufferedReader buffer2 = new BufferedReader(new FileReader(new File("DATA/Sedes.txt")));
+        String linea2 = buffer.readLine();
+
+        while (linea2 != null) {
+            String[] sedeData = linea2.split(",");
+            String nombreSede = sedeData[0];
+            String ubicacion = sedeData[1];
+            int horarioAtencion = Integer.parseInt(sedeData[2]);
+            String idAdmin = sedeData[3];
+            registrarSede(nombreSede, ubicacion, horarioAtencion, idAdmin);
+            linea = buffer.readLine();
+        }
+
+        buffer.close();
+
+	
+	
+	
+	
 	}
+	
+	
 
 
 }

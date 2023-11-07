@@ -7,14 +7,16 @@ import Procesamiento.EmpresaAlquilerVehiculo;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ConsultaAlquiler extends JFrame {
     private JTextField txtIdAlquiler;
     private JTextField[] txtCamposAlquiler;
     private EmpresaAlquilerVehiculo empresa;
-    public ConsultaAlquiler() {
-    	this.empresa =new EmpresaAlquilerVehiculo();
+    public ConsultaAlquiler() throws FileNotFoundException, IOException {
+    	this.empresa = new EmpresaAlquilerVehiculo();
         setTitle("Consultar Alquiler");
         setSize(500, 450);
 
@@ -186,7 +188,7 @@ public class ConsultaAlquiler extends JFrame {
         panel.add(label);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
     	EmpresaAlquilerVehiculo empresa = new EmpresaAlquilerVehiculo();
         new ConsultaAlquiler();
     }

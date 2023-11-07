@@ -27,7 +27,6 @@ public class Cliente extends Usuario{
 		this.licencia = new LicenciaConducir(numeroLicencia,paisExpedicion, fechaLicencia,imgLicencia);
 		this.Medio = new MedioPago(tipoPago,numeroMedioPago,fechaVencimientoMedioPago);
 		this.nombre = nombre;
-
 		
 		}
 	
@@ -60,43 +59,28 @@ public class Cliente extends Usuario{
 	public String getIdentificacion() {
 		return identificacion;
 	}
-
-
 	public String getNumeroLicencia() {
-
 		return licencia.getNumeroLicencia();
 	}
-
+	
 	public String getPaisExpedicion() {
-
 		return licencia.getPaisExpedicion();
 	}
-	
-	public String getFechaLicencia() {
-
-		return licencia.getFechaLicencia();
-	}
-
 	public String getImgLicencia() {
-
 		return licencia.getImgLicencia();
 	}
-	
 	public String getTipo() {
+        return Medio.getTipo();
+    }
 
-		return Medio.getTipo();
-	}
-	
-	public String getNumeroPago() {
+    public String getNumeroPago() {
+        return Medio.getNumero();
+    }
 
-		return Medio.getNumero();
-	}
+    public String getFechaVencimientoPago() {
+        return Medio.getFechaVencimiento();
+    }
 
-	public String getFechaVencimientoPago() {
-
-		return Medio.getFechaVencimiento();
-	}
-	
 	public ArrayList<String> resumenCliente() {
 		resumen.add(this.getNombre());
 		resumen.add(this.getNombreUsuario());
@@ -115,4 +99,5 @@ public class Cliente extends Usuario{
 		resumen.add(Medio.getFechaVencimiento());
 		return resumen;
 	}
+
 }

@@ -1,5 +1,4 @@
-package Aplicacion;
-
+package interfaz;
 
 import javax.swing.*;
 
@@ -8,14 +7,11 @@ import Procesamiento.EmpresaAlquilerVehiculo;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class alquiler extends JFrame {
     private JTextField[] txtCamposAlquiler;
-    private EmpresaAlquilerVehiculo empresa;
+
     public alquiler(EmpresaAlquilerVehiculo empresa) {
-    	this.empresa =empresa;
         setTitle("Crear Alquiler");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 400);
@@ -35,7 +31,7 @@ public class alquiler extends JFrame {
         JPanel crearAlquilerPanel = new JPanel(new GridLayout(10, 2));
         panel.add(crearAlquilerPanel, BorderLayout.CENTER);
 
-
+        // Define los campos de alquiler
         String[] parametrosAlquiler = {
                 "Cliente:", "Vehículo:", "Fecha de Recogida:", "Rango de Horas de Recogida:",
                 "Sede de Recogida:", "Fecha de Entrega:", "Rango de Horas de Entrega:",
@@ -43,7 +39,7 @@ public class alquiler extends JFrame {
         };
         txtCamposAlquiler = new JTextField[parametrosAlquiler.length];
 
-
+        // Agregar los campos y etiquetas de alquiler
         for (int i = 0; i < parametrosAlquiler.length; i++) {
             agregarParametro(crearAlquilerPanel, parametrosAlquiler[i]);
             JTextField txtCampo = new JTextField(20);
@@ -51,7 +47,7 @@ public class alquiler extends JFrame {
             crearAlquilerPanel.add(txtCampo);
         }
 
-
+        // Botones de Crear Alquiler y Regresar
         JButton crearAlquilerButton = new JButton("Crear Alquiler");
         JButton regresarButton = new JButton("Salir");
 
@@ -60,10 +56,10 @@ public class alquiler extends JFrame {
         botonesPanel.add(regresarButton);
         panel.add(botonesPanel, BorderLayout.SOUTH);
 
-
+        // Agregar un listener al botón de crear alquiler
         crearAlquilerButton.addActionListener(new ActionListener() {
            
-        	public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
             	String cliente = txtCamposAlquiler[0].getText(); 
             	String vehiculo = txtCamposAlquiler[1].getText();  
                 String fechaRecogida = txtCamposAlquiler[2].getText();  
@@ -78,10 +74,10 @@ public class alquiler extends JFrame {
                 empresa.generarAlquiler(vehiculo, cliente, fechaRecogida,rangohrecogida, sederecogida,
                 		fechaEntrega,Rangoentrega, sedeEntrega,seguros,conductores);
                 JOptionPane.showMessageDialog(null, "Alquiler creado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
             }
         });
 
+        // Agregar un listener al botón de regresar
         regresarButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -92,8 +88,8 @@ public class alquiler extends JFrame {
         setVisible(true);
     }
     
-    public alquiler() throws FileNotFoundException, IOException {
-    	this.empresa = new EmpresaAlquilerVehiculo();
+    public alquiler() {
+    	EmpresaAlquilerVehiculo empresa = new EmpresaAlquilerVehiculo();
         setTitle("Crear Alquiler");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 400);
@@ -113,7 +109,7 @@ public class alquiler extends JFrame {
         JPanel crearAlquilerPanel = new JPanel(new GridLayout(10, 2));
         panel.add(crearAlquilerPanel, BorderLayout.CENTER);
 
-
+        // Define los campos de alquiler
         String[] parametrosAlquiler = {
                 "Cliente:", "Vehículo:", "Fecha de Recogida:", "Rango de Horas de Recogida:",
                 "Sede de Recogida:", "Fecha de Entrega:", "Rango de Horas de Entrega:",
@@ -121,7 +117,7 @@ public class alquiler extends JFrame {
         };
         txtCamposAlquiler = new JTextField[parametrosAlquiler.length];
 
-
+        // Agregar los campos y etiquetas de alquiler
         for (int i = 0; i < parametrosAlquiler.length; i++) {
             agregarParametro(crearAlquilerPanel, parametrosAlquiler[i]);
             JTextField txtCampo = new JTextField(20);
@@ -129,7 +125,7 @@ public class alquiler extends JFrame {
             crearAlquilerPanel.add(txtCampo);
         }
 
-
+        // Botones de Crear Alquiler y Regresar
         JButton crearAlquilerButton = new JButton("Crear Alquiler");
         JButton regresarButton = new JButton("Salir");
 
@@ -138,7 +134,7 @@ public class alquiler extends JFrame {
         botonesPanel.add(regresarButton);
         panel.add(botonesPanel, BorderLayout.SOUTH);
 
-
+        // Agregar un listener al botón de crear alquiler
         crearAlquilerButton.addActionListener(new ActionListener() {
            
             public void actionPerformed(ActionEvent e) {
@@ -156,11 +152,10 @@ public class alquiler extends JFrame {
                 empresa.generarAlquiler(vehiculo, cliente, fechaRecogida,rangohrecogida, sederecogida,
                 		fechaEntrega,Rangoentrega, sedeEntrega,seguros,conductores);
                 JOptionPane.showMessageDialog(null, "Alquiler creado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
             }
         });
 
-
+        // Agregar un listener al botón de regresar
         regresarButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -176,7 +171,7 @@ public class alquiler extends JFrame {
         panel.add(label);
     }
 
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) {
         EmpresaAlquilerVehiculo empresa = new EmpresaAlquilerVehiculo();
         new alquiler(empresa);
     }
