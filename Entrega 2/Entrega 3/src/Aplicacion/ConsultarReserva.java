@@ -69,15 +69,14 @@ public class ConsultarReserva {
         consultarReservaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí deberías agregar la lógica para consultar una reserva por su ID.
-                // Supongamos que obtienes los datos de la reserva en el siguiente formato:
+                
                 String[] datosReserva = {
                     "Cliente Consultado", "Categoría de Vehículo Consultada", "Sede de Recogida Consultada",
                     "Sede de Entrega Consultada", "Fecha de Recogida Consultada", "Fecha de Entrega Consultada",
                     "Rango de Horas de Recogida Consultado", "Rango de Horas de Entrega Consultado"
                 };
 
-                // Rellenar los campos de visualización con los datos de la reserva consultada
+               
                 for (int i = 0; i < datosReserva.length; i++) {
                     txtCamposReserva[i].setText(datosReserva[i]);
                 }

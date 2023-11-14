@@ -57,9 +57,7 @@ public class MoficiarAlquiler {
         consultarAlquilerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí deberías agregar la lógica para consultar el alquiler por el ID de alquiler.
-                // Luego, llenar los campos de texto con los datos del alquiler consultado.
-                // Si el alquiler no se encuentra, mostrar un mensaje de error.
+                
             }
         });
 
@@ -67,8 +65,7 @@ public class MoficiarAlquiler {
         modificarAlquilerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí deberías agregar la lógica para modificar el alquiler con los datos ingresados en los campos.
-                // Puedes mostrar un mensaje de confirmación o realizar las acciones necesarias.
+                
             }
         });
 
@@ -76,8 +73,7 @@ public class MoficiarAlquiler {
         eliminarAlquilerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí deberías agregar la lógica para eliminar el alquiler.
-                // Puedes mostrar un mensaje de confirmación o realizar las acciones necesarias.
+                
             }
         });
 

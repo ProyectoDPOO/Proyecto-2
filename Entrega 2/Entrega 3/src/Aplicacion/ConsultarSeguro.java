@@ -50,11 +50,10 @@ public class ConsultarSeguro {
         consultarSeguroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí deberías agregar la lógica para consultar el seguro por el tipo ingresado.
-                // Supongamos que obtienes el precio del seguro en el siguiente formato:
+                
                 String precioSeguro = "100.00"; // Precio del seguro consultado
 
-                // Rellenar el campo de precio con el resultado
+                // 
                 txtPrecio.setText(precioSeguro);
             }
         });

@@ -56,9 +56,7 @@ public class modificarCategoria {
         consultarCategoriaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí deberías agregar la lógica para consultar la categoría por el nombre de categoría.
-                // Luego, llenar los campos de texto con los datos de la categoría consultada.
-                // Si la categoría no se encuentra, mostrar un mensaje de error.
+                
             }
         });
 
@@ -66,8 +64,7 @@ public class modificarCategoria {
         modificarCategoriaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí deberías agregar la lógica para modificar la categoría con los datos ingresados en los campos.
-                // Puedes mostrar un mensaje de confirmación o realizar las acciones necesarias.
+                
             }
         });
 
@@ -75,8 +72,7 @@ public class modificarCategoria {
         eliminarCategoriaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí deberías agregar la lógica para eliminar la categoría.
-                // Puedes mostrar un mensaje de confirmación o realizar las acciones necesarias.
+                
             }
         });
 

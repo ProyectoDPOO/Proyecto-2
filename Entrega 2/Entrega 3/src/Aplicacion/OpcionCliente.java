@@ -6,6 +6,7 @@ import javax.swing.JButton;
 
 import javax.swing.JPanel;
 
+import Procesamiento.EmpresaAlquilerVehiculo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,6 +14,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 
@@ -34,8 +36,16 @@ public class OpcionCliente extends JFrame {
         
         reserva.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	try {
+					reserva ventana = new reserva ();
+					ventana.setVisible(true);
+					dispose();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             	
-            	//CONECTAR GENERAR RESERVA
+            	
             }
         });
         

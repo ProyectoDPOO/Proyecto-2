@@ -89,7 +89,7 @@ public class EmpresaAlquilerVehiculo {
 			}    
 		}
 	 
-	 public Usuario inicioSesion(String usuario, String contrasena) 
+	public Usuario inicioSesion(String usuario, String contrasena) 
 		 {
 		 
 			 if(usuarios.containsKey(usuario)) {
@@ -105,14 +105,11 @@ public class EmpresaAlquilerVehiculo {
 			 return null;
 		 }
 		
-
-	
 	public void registrarVehiculo(String placa, String marca, String modelo, String color, String transmision, 
 			int capacidad, String categoria, String estado, String sedeActual, String fechadisponible) 
 	{
 		  Vehiculo newVehiculo = new Vehiculo(placa, marca, modelo,color,transmision,capacidad,categoria,estado, sedeActual, fechadisponible);
 		  inventario.put(placa, newVehiculo);
-		  
 	}
 	
 	public void eliminarVehiculo(String placa) 
@@ -184,9 +181,7 @@ public class EmpresaAlquilerVehiculo {
 			 solve.add(alquilerc.getFechaEntrega());
 			 solve.add(alquilerc.getRangoHorasRecogida());
 			 solve.add(alquilerc.getRangoHorasEntrega());
-			 return solve;
-			 
-			 
+			 return solve; 
 		 }
 		else 
 	    {solve.add("No encontrado");
@@ -198,8 +193,7 @@ public class EmpresaAlquilerVehiculo {
 		 solve.add("No encontrado");
 		 solve.add("No encontrado");
 		return solve;
-	    }
-		 
+	    } 
 	}
 	
 	public void generarAlquiler(String vehiculo, String cliente, String fechaRecogida, String rangoHorasRecogida, String sedeRecogida, String fechaEntrega, String rangoHorasEntrega, String sedeEntrega, String seguros2, String conductores)
@@ -336,65 +330,67 @@ public class EmpresaAlquilerVehiculo {
 	    }
 	}
 	public void cargarData() throws FileNotFoundException, IOException {
-		BufferedReader buffer = new BufferedReader(new FileReader(new File("DATA/Usuarios.txt")));
-		String linea = buffer.readLine();
-		while (linea != null) {
-			String[] data = linea.split(",");
-			String usuario = data[1];
-			String password = data[2];
-			String rol = data[3];
-			Usuario usuarioC=new Usuario(usuario, password, rol);
-			if (data.length >4){
-				Empleado EmpleC= new Empleado(data[0],usuario, password, rol, data[4]);
-				empleados.put(data[0], EmpleC);
-			}
-			
-			usuarios.put(usuario, usuarioC);
-			linea = buffer.readLine();
-		}
-		buffer.close();
-	
-		BufferedReader buffer1 = new BufferedReader(new FileReader(new File("DATA/inventario.txt")));
-		linea = buffer1.readLine();
-		while (linea != null) {
-			String[] vehiculoData = linea.split(",");
-			String placa = vehiculoData[0];
-            String marca = vehiculoData[1];
-            String modelo = vehiculoData[2];
-            String color = vehiculoData[3];
-            String transmision = vehiculoData[4];
-            int capacidad = Integer.parseInt(vehiculoData[5]);
-            String categoria = vehiculoData[6];
-            String estado = vehiculoData[7];
-            String sedeActual = vehiculoData[8];
-            String fechadisponible = vehiculoData[9];
-            registrarVehiculo(placa, marca, modelo, color, transmision, capacidad, categoria, estado, sedeActual, fechadisponible);
-		}
-        buffer.close();
+		try {
+				BufferedReader buffer = new BufferedReader(new FileReader(new File("DATA/Usuarios.txt")));
+				String linea = buffer.readLine();
+				while (linea != null) {
+					String[] data = linea.split(",");
+					String usuario = data[1];
+					String password = data[2];
+					String rol = data[3];
+					Usuario usuarioC=new Usuario(usuario, password, rol);
+					if (data.length >4){
+						Empleado EmpleC= new Empleado(data[0],usuario, password, rol, data[4]);
+						empleados.put(data[0], EmpleC);
+					}
+					
+					usuarios.put(usuario, usuarioC);
+					linea = buffer.readLine();
+				}
+				buffer.close();
+
+				BufferedReader buffer1 = new BufferedReader(new FileReader(new File("DATA/inventario.txt")));
+				String linea1 = buffer1.readLine();
+				while (linea1 != null) {
+					String[] vehiculoData = linea1.split(",");
+					String placa = vehiculoData[0];
+		            String marca = vehiculoData[1];
+		            String modelo = vehiculoData[2];
+		            String color = vehiculoData[3];
+		            String transmision = vehiculoData[4];
+		            int capacidad = Integer.parseInt(vehiculoData[5]);
+		            String categoria = vehiculoData[6];
+		            String estado = vehiculoData[7];
+		            String sedeActual = vehiculoData[8];
+		            String fechadisponible = vehiculoData[9];
+		            registrarVehiculo(placa, marca, modelo, color, transmision, capacidad, categoria, estado, sedeActual, fechadisponible);
+		            linea1 = buffer1.readLine();
+				}
+		        buffer1.close();
+		        
+		        BufferedReader buffer2 = new BufferedReader(new FileReader(new File("DATA/Sedes.txt")));
+		        String linea2 = buffer2.readLine();
 		
-        
-        BufferedReader buffer2 = new BufferedReader(new FileReader(new File("DATA/Sedes.txt")));
-        String linea2 = buffer.readLine();
-
-        while (linea2 != null) {
-            String[] sedeData = linea2.split(",");
-            String nombreSede = sedeData[0];
-            String ubicacion = sedeData[1];
-            int horarioAtencion = Integer.parseInt(sedeData[2]);
-            String idAdmin = sedeData[3];
-            registrarSede(nombreSede, ubicacion, horarioAtencion, idAdmin);
-            linea = buffer.readLine();
-        }
-
-        buffer.close();
-
-	
-	
-	
-	
+		        while (linea2 != null) {
+		            String[] sedeData = linea2.split(",");
+		            String nombreSede = sedeData[0];
+		            String ubicacion = sedeData[1];
+		            int horarioAtencion = Integer.parseInt(sedeData[2]);
+		            String idAdmin = sedeData[3];
+		            registrarSede(nombreSede, ubicacion, horarioAtencion, idAdmin);
+		            linea2 = buffer2.readLine();
+		        }
+		
+		        buffer2.close();
+		
+			
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
 	}
 	
 	
 
 
-}
+}}

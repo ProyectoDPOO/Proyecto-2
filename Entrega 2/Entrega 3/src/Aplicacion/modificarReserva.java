@@ -57,9 +57,7 @@ public class modificarReserva {
 	        consultarReservaButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	                // Aquí deberías agregar la lógica para consultar la reserva por el ID de reserva.
-	                // Luego, llenar los campos de texto con los datos de la reserva consultada.
-	                // Si la reserva no se encuentra, mostrar un mensaje de error.
+	                
 	            }
 	        });
 
@@ -67,8 +65,7 @@ public class modificarReserva {
 	        modificarReservaButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	                // Aquí deberías agregar la lógica para modificar la reserva con los datos ingresados en los campos.
-	                // Puedes mostrar un mensaje de confirmación o realizar las acciones necesarias.
+	                
 	            }
 	        });
 
@@ -76,8 +73,7 @@ public class modificarReserva {
 	        eliminarReservaButton.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	                // Aquí deberías agregar la lógica para eliminar la reserva.
-	                // Puedes mostrar un mensaje de confirmación o realizar las acciones necesarias.
+	                
 	            }
 	        });
 
